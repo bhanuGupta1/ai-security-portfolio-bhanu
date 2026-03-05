@@ -1,3 +1,7 @@
 node_modules/
+**/node_modules/
 cypress/videos/
 cypress/screenshots/
+automation/cypress-framework/cypress/videos/
+automation/cypress-framework/cypress/screenshots/
+PORTFOLIO-PLAN.md

@@ -1,0 +1,25 @@
+{
+  "name": "cypress-framework",
+  "version": "1.0.0",
+  "description": "Cypress E2E Automation Framework — Sauce Demo (Page Object Model, Custom Commands, Data-Driven)",
+  "author": "Bhanu Gupta",
+  "license": "ISC",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headed": "cypress run --headed",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhanuGupta1/qa-portfolio-bhanu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhanuGupta1/qa-portfolio-bhanu/issues"
+  },
+  "homepage": "https://github.com/bhanuGupta1/qa-portfolio-bhanu#readme",
+  "devDependencies": {
+    "cypress": "^15.10.0"
+  }
+}

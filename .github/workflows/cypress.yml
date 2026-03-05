@@ -1,8 +1,14 @@
-name: Cypress Tests
+name: Cypress E2E Tests
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: automation/cypress-framework
 
 jobs:
   cypress-run:
@@ -20,5 +26,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Cypress (headless)
+      - name: Run Cypress tests (headless)
         run: npx cypress run
+
+      - name: Upload screenshots on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: automation/cypress-framework/cypress/screenshots/
+          retention-days: 7

@@ -1,45 +1,95 @@
-# QA Portfolio — Bhanu
+# QA Engineering Portfolio — Bhanu Gupta
 
-Hands-on QA practice across:
-1) Manual web testing (SEEK — public NZ website)
-2) API testing automation (DummyJSON — Postman + Newman)
-
+Hands-on QA portfolio built during my Bachelor of IT at Otago Polytechnic, New Zealand. Demonstrates manual testing, API testing, and test automation skills across real-world applications.
 
 ---
 
-## 1) Manual Web Testing — SEEK (Guest User)
-Focus: guest experience, sign-in gating behaviour, usability, and accessibility checks.
+## What's Inside
 
-Folder: manual/
+### 1. Manual Web Testing — SEEK (NZ)
+Exploratory and structured testing of [SEEK New Zealand](https://www.seek.co.nz) as a guest user, focused on usability, authentication gating behaviour, and accessibility.
 
-Key deliverables:
-- Test Plan
-- Executed Test Cases
-- Findings / Bug Reports (severity + impact + evidence)
-- Test Summary Report
-- Risk Matrix
-- Requirements Traceability Matrix (RTM)
-- Accessibility Checks
-- Known Limitations
+**Includes:** Test Plan, 14 Executed Test Cases, 6 Bug Reports (with severity, impact, and evidence), Risk Matrix, RTM, Accessibility Checks, Test Summary Report
+
+**Folder:** [`manual/`](./manual)
 
 ---
 
-## 2) API Testing — DummyJSON (Postman + Newman)
-Focus: automated API checks + reporting using Postman collections and Newman.
+### 2. API Testing — DummyJSON (Postman + Newman)
+Automated API testing using Postman collections and Newman CLI, covering authentication, user and product endpoints, protected routes, and negative scenarios.
 
-Folder: api/
+**Includes:** Test Plan, 9 Test Cases (positive + negative), Newman HTML Report, Evidence Screenshots
 
-Key deliverables:
-- API Test Plan
-- Executed API Test Cases (positive + negative)
-- Findings (including test setup issues vs product behaviour)
-- Newman HTML report output
-- Evidence screenshots
+**Folder:** [`api/`](./api)
 
 ---
 
-## Tools Used
-- Manual testing (web)
-- Postman (collections + environments)
-- Newman CLI + HTML report (htmlextra)
-- Git + GitHub
+### 3. Automation — Cypress E2E Framework
+
+#### Phase 1: Learning (example.cypress.io)
+My first Cypress tests — 2 basic smoke tests covering page navigation and content validation on the official Cypress demo site. These taught me Cypress fundamentals: `cy.visit()`, `cy.get()`, URL assertions, and headless CLI execution.
+
+**Preserved in:** [`automation/cypress-framework/cypress/e2e/old-demo/`](./automation/cypress-framework/cypress/e2e/old-demo)
+
+#### Phase 2: Full Framework (Sauce Demo)
+Complete E2E automation framework built against [Sauce Demo](https://www.saucedemo.com), a real e-commerce app with login, products, cart, and checkout.
+
+**24 test cases** across 5 spec files:
+
+| Spec | Tests | Coverage |
+|------|-------|----------|
+| `login.cy.js` | 5 | Valid login, locked user, invalid creds, empty fields |
+| `inventory.cy.js` | 3 | Product count, names/prices, logout |
+| `cart.cy.js` | 6 | Add/remove items, cart verification, continue shopping |
+| `checkout.cy.js` | 6 | Happy path, missing fields, cancel, post-purchase |
+| `sorting.cy.js` | 4 | Name A-Z/Z-A, price low-high/high-low |
+
+**Framework features:**
+
+- Page Object Model — `LoginPage`, `InventoryPage`, `CartPage`, `CheckoutPage`
+- Custom commands — `cy.login()`, `cy.loginAs()`, `cy.addToCart()`, `cy.verifyCartCount()`
+- Data-driven fixtures — 6 user types, full product data with expected sort orders
+- Screenshot on failure
+- GitHub Actions CI/CD pipeline
+
+**Folder:** [`automation/cypress-framework/`](./automation/cypress-framework)
+
+---
+
+## How to Run the Cypress Tests
+
+```bash
+# Clone the repo
+git clone https://github.com/bhanuGupta1/qa-portfolio-bhanu.git
+cd qa-portfolio-bhanu/automation/cypress-framework
+
+# Install dependencies
+npm install
+
+# Run all tests headless
+npm test
+
+# Open Cypress UI (interactive)
+npm run cy:open
+```
+
+---
+
+## Tools & Technologies
+
+- **Manual Testing** — SEEK (NZ), structured test design, risk-based testing
+- **API Testing** — Postman, Newman CLI, htmlextra reporter
+- **Automation** — Cypress 15.x, JavaScript, Page Object Model
+- **CI/CD** — GitHub Actions
+- **Version Control** — Git, GitHub
+
+---
+
+## About Me
+
+I'm Bhanu Gupta, a final-year Bachelor of IT student at Otago Polytechnic International Campus, New Zealand. I'm building this portfolio to demonstrate practical QA and IT skills through hands-on projects, not just theory.
+
+This portfolio is a work in progress — more sections covering Playwright, Selenium, networking, Linux, and security testing are planned.
+
+- **GitHub:** [github.com/bhanuGupta1](https://github.com/bhanuGupta1)
+- **Email:** bhanugupta2001@gmail.com
