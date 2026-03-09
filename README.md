@@ -16,9 +16,20 @@ Exploratory and structured testing of [SEEK New Zealand](https://www.seek.co.nz)
 ---
 
 ### 2. API Testing — DummyJSON (Postman + Newman)
-Automated API testing using Postman collections and Newman CLI, covering authentication, user and product endpoints, protected routes, and negative scenarios.
+Automated API test suite covering authentication, user management, full product CRUD, and chained auth flows against the DummyJSON REST API.
 
-**Includes:** Test Plan, 9 Test Cases (positive + negative), Newman HTML Report, Evidence Screenshots
+**18 requests, 47 assertions** across 4 categories:
+
+| Category | Requests | What's Tested |
+|----------|----------|---------------|
+| Auth | 3 | Valid login (token stored), invalid creds, empty body |
+| Users | 4 | List, get by ID, invalid ID (404), pagination |
+| Products (CRUD) | 8 | GET, POST, PUT, DELETE, search, sort, schema validation |
+| Protected (Chained Auth) | 3 | No token (401), valid token (200), fake token (401) |
+
+**Key patterns:** Chained auth (login stores JWT, reused on protected routes), full CRUD coverage, schema validation (field types, value ranges), negative testing, pagination, sort verification
+
+**Includes:** Test Plan, 18 Test Cases, Newman HTML Report, CI Pipeline, Evidence Screenshots
 
 **Folder:** [`api/`](./api)
 
@@ -78,7 +89,7 @@ npm run cy:open
 ## Tools & Technologies
 
 - **Manual Testing** — SEEK (NZ), structured test design, risk-based testing
-- **API Testing** — Postman, Newman CLI, htmlextra reporter
+- **API Testing** — Postman, Newman CLI, htmlextra reporter, CRUD testing, chained auth flows
 - **Automation** — Cypress 15.x, JavaScript, Page Object Model
 - **CI/CD** — GitHub Actions
 - **Version Control** — Git, GitHub

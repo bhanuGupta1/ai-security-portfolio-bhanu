@@ -1,0 +1,38 @@
+name: API Tests (Newman)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  newman-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Newman
+        run: npm i -g newman newman-reporter-htmlextra
+
+      - name: Run API tests
+        run: |
+          newman run "api/postman/DummyJSON-API-Tests-Bhanu.postman_collection.json" \
+            -e "api/postman/dummyjson-env.postman_environment.json" \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export "api/newman/newman-report.html"
+
+      - name: Upload Newman report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newman-report
+          path: api/newman/newman-report.html
+          retention-days: 14
