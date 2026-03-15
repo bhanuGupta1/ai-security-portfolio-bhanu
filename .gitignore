@@ -1,7 +1,27 @@
+# Node modules
 node_modules/
 **/node_modules/
+
+# Cypress artifacts
 cypress/videos/
 cypress/screenshots/
 automation/cypress-framework/cypress/videos/
 automation/cypress-framework/cypress/screenshots/
+
+# Playwright artifacts
+test-results/
+playwright-report/
+blob-report/
+
+# Private/planning files (not part of portfolio)
+portfolio_state.md
+portfolio_tasks.md
+skills_roadmap.md
+certifications_plan.md
 PORTFOLIO-PLAN.md
+Bhanu-Gupta-CV.pdf
+banner.py
+linkedin-*.md
+linkedin-*.txt
+pitch-*.md
+voice-profile-*.md
