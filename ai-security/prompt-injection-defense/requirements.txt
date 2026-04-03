@@ -1,0 +1,12 @@
+# Core — no external dependencies required for rule-based detection
+# Python 3.10+ standard library only: re, unicodedata, dataclasses, enum, logging, hashlib, json, argparse
+
+# For running tests
+pytest>=7.0.0
+
+# Optional: for embedding-based similarity detection (future enhancement)
+# sentence-transformers>=2.2.0
+# torch>=2.0.0
+
+# Optional: for Claude API integration (live LLM testing)
+# anthropic>=0.40.0

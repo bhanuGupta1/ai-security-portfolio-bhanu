@@ -1,22 +1,76 @@
-# QA Engineering Portfolio — Bhanu Gupta
+# AI + Security + AI Security Portfolio — Bhanu Gupta
 
-Hands-on QA portfolio built during my Bachelor of IT at Otago Polytechnic, New Zealand. Demonstrates manual testing, API testing, and test automation skills across real-world applications.
+Portfolio built during my Bachelor of IT at Otago Polytechnic, Auckland. Three deliberate pillars:
+
+**Pillar 1 — AI:** ML fundamentals, model pipelines, Claude API, RAG architecture, LangChain. Understanding how AI systems are built is the prerequisite for knowing how to break and defend them.
+
+**Pillar 2 — Security:** Network+, Security+, web attack surface, SIEM, detection engineering, HackTheBox, PortSwigger. The broad security foundation that makes me hireable at entry level in NZ right now.
+
+**Pillar 3 — AI Security:** Prompt injection defense, LLM red teaming, adversarial ML, OWASP LLM Top 10, MITRE ATLAS. The intersection most candidates don't have — and the long-term target role.
+
+Entry-level target: Junior Security Analyst / Junior AppSec Engineer (NZ priority, AU backup).
+Long-term target: AI Security Engineer / AI Red Teamer.
+
+QA automation foundations are reframed as security testing evidence — adversarial edge-case thinking, auth flow analysis, systematic coverage, CI/CD automation. The same skills that make a good test engineer make a good security engineer.
 
 ---
 
-## What's Inside
+## AI Security Projects *(In Progress)*
 
-### 1. Manual Web Testing — SEEK (NZ)
-Exploratory and structured testing of [SEEK New Zealand](https://www.seek.co.nz) as a guest user, focused on usability, authentication gating behaviour, and accessibility.
+### 1. Prompt Injection Defense Framework
+Python toolkit detecting and defending against prompt injection attacks on LLMs. 50+ attack patterns catalogued (direct, indirect, jailbreaks). Rule-based + embedding similarity detection. Input sanitization layer. Mapped to OWASP LLM Top 10 (LLM01).
 
-**Includes:** Test Plan, 14 Executed Test Cases, 6 Bug Reports (with severity, impact, and evidence), Risk Matrix, RTM, Accessibility Checks, Test Summary Report
+*Building now.*
+
+### 2. LLM Red Team Toolkit
+Automated red teaming tool that probes LLMs for vulnerabilities — prompt injection, data leakage, jailbreak patterns, output manipulation. Scoring system, PDF/Markdown report generation, evidence collection.
+
+*Planned: after Project 1.*
+
+### 3. Secure RAG Pipeline
+Retrieval-Augmented Generation system with security hardening at every layer. Document-level access control, query sanitization, data poisoning detection, PII filtering, audit logging.
+
+*Planned: during Master's.*
+
+### 4. Adversarial ML Attack Detection
+FGSM and PGD attacks on a trained image classifier. Defense comparisons (adversarial training, input preprocessing). Full writeup with math explanations.
+
+*Planned: during Master's.*
+
+### 5. AI Security Audit Framework
+Reusable audit checklist and automated scanning toolkit mapped to OWASP LLM Top 10 and MITRE ATLAS. Risk scoring matrix, professional report template, remediation database.
+
+*Planned: after Project 2.*
+
+---
+
+## Security Testing *(In Progress)*
+
+**HackTheBox writeups** — working through machines, starting with Easy (web app and auth-focused), progressing to Medium.
+
+**OWASP Juice Shop lab** — 3-star+ challenges documented as a professional vulnerability assessment report, mapped to OWASP Top 10 and CWE IDs.
+
+**PortSwigger Web Security Academy** — SQL injection, XSS, authentication, access control, SSRF labs.
+
+---
+
+## QA Foundations *(Completed — Reframed for Security)*
+
+These sections demonstrate the systematic, adversarial thinking that feeds directly into security engineering work.
+
+### Manual Security Testing — SEEK NZ
+
+Security-focused exploratory testing of SEEK New Zealand as a guest user. Evaluated authentication gating, access control boundaries, authorization bypass attempts, and session management behavior.
+
+14 executed test cases, 6 bug reports (severity/impact/evidence), Risk Matrix, RTM, Accessibility Checks, Test Summary Report.
 
 **Folder:** [`manual/`](./manual)
 
 ---
 
-### 2. API Testing — DummyJSON (Postman + Newman)
-Automated API test suite covering authentication, user management, full product CRUD, and chained auth flows against the DummyJSON REST API.
+### API Security Testing — DummyJSON (Postman + Newman)
+
+API security test suite covering authentication bypass vectors, JWT token security, unauthorized access attempts, and data validation against the DummyJSON REST API.
 
 **18 requests, 47 assertions** across 5 categories:
 
@@ -28,67 +82,29 @@ Automated API test suite covering authentication, user management, full product 
 | Products (CRUD) | 8 | GET, POST, PUT, DELETE, search, sort, schema validation |
 | Authenticated Access | 1 | Chained auth: login token reused on /auth/me |
 
-**Key patterns:** Chained auth (login stores JWT, reused on protected routes), full CRUD coverage, schema validation (field types, value ranges), negative testing, pagination, sort verification
-
-**Includes:** Test Plan, 18 Test Cases, Newman HTML Report, CI Pipeline, Evidence Screenshots
+Chained auth flows, full CRUD coverage, schema validation, negative testing, Newman CI pipeline.
 
 **Folder:** [`api/`](./api)
 
 ---
 
-### 3. Automation — Cypress E2E Framework
+### Security Regression Automation — Cypress (JavaScript)
 
-#### Phase 1: Learning (example.cypress.io)
-My first Cypress tests — 2 basic smoke tests covering page navigation and content validation on the official Cypress demo site. These taught me Cypress fundamentals: `cy.visit()`, `cy.get()`, URL assertions, and headless CLI execution.
+Automated security regression framework validating authentication controls, session management, and data integrity across Sauce Demo's critical security boundaries.
 
-**Preserved in:** [`automation/cypress-framework/cypress/e2e/old-demo/`](./automation/cypress-framework/cypress/e2e/old-demo)
+**24 test cases** across 5 spec files — valid login, locked user detection, invalid credential handling, session state persistence, cart data integrity, checkout flow validation.
 
-#### Phase 2: Full Framework (Sauce Demo)
-Complete E2E automation framework built against [Sauce Demo](https://www.saucedemo.com), a real e-commerce app with login, products, cart, and checkout.
-
-**24 test cases** across 5 spec files:
-
-| Spec | Tests | Coverage |
-|------|-------|----------|
-| `login.cy.js` | 5 | Valid login, locked user, invalid creds, empty fields |
-| `inventory.cy.js` | 3 | Product count, names/prices, logout |
-| `cart.cy.js` | 6 | Add/remove items, cart verification, continue shopping |
-| `checkout.cy.js` | 6 | Happy path, missing fields, cancel, post-purchase |
-| `sorting.cy.js` | 4 | Name A-Z/Z-A, price low-high/high-low |
-
-**Framework features:**
-
-- Page Object Model — `LoginPage`, `InventoryPage`, `CartPage`, `CheckoutPage`
-- Custom commands — `cy.login()`, `cy.loginAs()`, `cy.addToCart()`, `cy.verifyCartCount()`
-- Data-driven fixtures — 6 user types, full product data with expected sort orders
-- Screenshot on failure
-- GitHub Actions CI/CD pipeline
+Page Object Model, custom commands, data-driven fixtures, screenshot on failure, GitHub Actions CI/CD.
 
 **Folder:** [`automation/cypress-framework/`](./automation/cypress-framework)
 
 ---
 
-### 4. Automation — Playwright E2E Framework (TypeScript)
+### Cross-Browser Security Validation — Playwright (TypeScript)
 
-Same app (Sauce Demo), different framework. Built with Playwright + TypeScript to demonstrate tool flexibility and compare approaches. Multi-browser testing (Chromium, Firefox, WebKit), auto-wait, trace viewer.
+Multi-browser security validation framework. Same application, different stack. Proves the security test coverage isn't tool-dependent.
 
-**29 test cases** across 5 spec files:
-
-| Spec | Tests | Coverage |
-|------|-------|----------|
-| `login.spec.ts` | 7 | Valid login, locked user, invalid creds, empty fields, error dismissal |
-| `inventory.spec.ts` | 4 | Product count, names/prices, logout, direct access protection |
-| `cart.spec.ts` | 7 | Add/remove items, cart verification, continue shopping |
-| `checkout.spec.ts` | 7 | Happy path, missing fields, cancel, total verification, post-purchase |
-| `sorting.spec.ts` | 4 | Name A-Z/Z-A, price low-high/high-low |
-
-**Framework features:**
-
-- Page Object Model — `LoginPage`, `InventoryPage`, `CartPage`, `CheckoutPage` (TypeScript)
-- Data-driven fixtures — 7 user types, full product data, checkout data
-- Multi-browser — Chromium, Firefox, WebKit
-- Screenshot on failure, trace on retry
-- GitHub Actions CI/CD pipeline
+**29 test cases** — Chromium, Firefox, WebKit. Auth flow verification, session management, direct-access protection, checkout data integrity. Trace viewer for failure analysis.
 
 **Folder:** [`automation/playwright-framework/`](./automation/playwright-framework)
 
@@ -101,37 +117,46 @@ Same app (Sauce Demo), different framework. Built with Playwright + TypeScript t
 cd automation/cypress-framework
 npm install
 npm test                    # headless
-npm run cy:open             # interactive UI
+npm run cy:open             # interactive
 ```
 
 ### Playwright
 ```bash
 cd automation/playwright-framework
 npm install
-npx playwright install      # download browsers
+npx playwright install
 npm test                    # all browsers
 npm run test:chromium       # chromium only
-npm run test:headed         # see the browser
-npm run report              # view HTML report
+npm run report              # HTML report
 ```
+
+---
+
+## Certifications
+
+Working through a deliberate certification stack across CompTIA, ISTQB, HackTheBox, and Anthropic. Full tracker in `certifications/README.md` *(coming soon)*.
+
+Target certs: CompTIA Network+ → Security+ → SecAI+, ISTQB CTFL → CT-AI, HTB CJCA → CWES → AI Red Teamer, Claude Certified Architect, CAISP.
 
 ---
 
 ## Tools & Technologies
 
-- **Manual Testing** — SEEK (NZ), structured test design, risk-based testing
-- **API Testing** — Postman, Newman CLI, htmlextra reporter, CRUD testing, chained auth flows
-- **Automation** — Cypress 15.x, JavaScript, Page Object Model
-- **CI/CD** — GitHub Actions
-- **Version Control** — Git, GitHub
+Security: Python, OWASP LLM Top 10, MITRE ATLAS, prompt injection patterns, adversarial ML, HackTheBox, PortSwigger Web Security Academy
+
+Testing & Automation: Cypress 15.x (JavaScript), Playwright (TypeScript), Postman, Newman, Page Object Model, data-driven fixtures
+
+AI/ML: Claude API, Anthropic MCP, LangChain *(learning)*, PyTorch *(learning)*
+
+CI/CD: GitHub Actions, headless test runs, Newman HTML reports
 
 ---
 
-## About Me
+## About
 
-I'm Bhanu Gupta, a final-year Bachelor of IT student at Otago Polytechnic International Campus, New Zealand. I'm building this portfolio to demonstrate practical QA and IT skills through hands-on projects, not just theory.
+Bhanu Gupta — final-year Bachelor of IT, Otago Polytechnic Auckland. Pursuing a Master's in Cybersecurity after graduation (Dec 2026). Building toward Security Engineering roles with AI security specialization. Target market: New Zealand (priority), Australia.
 
-This portfolio is a work in progress — more sections covering Playwright, Selenium, networking, Linux, and security testing are planned.
+Security engineering is where I'm entering. AI security is where I'm heading. The two don't conflict — they compound.
 
 - **GitHub:** [github.com/bhanuGupta1](https://github.com/bhanuGupta1)
 - **Email:** bhanugupta2001@gmail.com
