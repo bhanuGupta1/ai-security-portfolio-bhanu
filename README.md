@@ -1,162 +1,72 @@
 # AI + Security + AI Security Portfolio — Bhanu Gupta
 
-Portfolio built during my Bachelor of IT at Otago Polytechnic, Auckland. Three deliberate pillars:
+Built during my Bachelor of IT at Otago Polytechnic Auckland. Three deliberate pillars:
 
-**Pillar 1 — AI:** ML fundamentals, model pipelines, Claude API, RAG architecture, LangChain. Understanding how AI systems are built is the prerequisite for knowing how to break and defend them.
+**AI** — understanding how models are built, trained, and deployed. You can't secure what you don't understand.
 
-**Pillar 2 — Security:** Network+, Security+, web attack surface, SIEM, detection engineering, HackTheBox, PortSwigger. The broad security foundation that makes me hireable at entry level in NZ right now.
+**Security** — web attack surface, detection engineering, penetration testing fundamentals. The foundation that makes me hireable at entry level in NZ.
 
-**Pillar 3 — AI Security:** Prompt injection defense, LLM red teaming, adversarial ML, OWASP LLM Top 10, MITRE ATLAS. The intersection most candidates don't have — and the long-term target role.
+**AI Security** — prompt injection, adversarial ML, LLM red teaming, OWASP LLM Top 10. The intersection most candidates don't have.
 
-Entry-level target: Junior Security Analyst / Junior AppSec Engineer (NZ priority, AU backup).
-Long-term target: AI Security Engineer / AI Red Teamer.
-
-QA automation foundations are reframed as security testing evidence — adversarial edge-case thinking, auth flow analysis, systematic coverage, CI/CD automation. The same skills that make a good test engineer make a good security engineer.
+Targeting Security Engineer and AppSec roles in New Zealand. Long-term target: AI Security Engineer / AI Red Teamer.
 
 ---
 
-## AI Security Projects *(In Progress)*
+## AI Security Projects
 
 ### 1. Prompt Injection Defense Framework
-Python toolkit detecting and defending against prompt injection attacks on LLMs. 50+ attack patterns catalogued (direct, indirect, jailbreaks). Rule-based + embedding similarity detection. Input sanitization layer. Mapped to OWASP LLM Top 10 (LLM01).
+Python toolkit detecting and defending against prompt injection attacks on LLMs. 50+ attack patterns across 7 categories. Rule-based detection with compound risk scoring (0–100). Input sanitization pipeline. Structured JSON logging with alert thresholds. Mapped to OWASP LLM Top 10 (LLM01).
 
-*Building now.*
+- **Patterns:** Direct override, persona injection, delimiter attacks, encoded attacks, indirect injection, context manipulation, jailbreak templates
+- **Detection:** Compound risk scoring — SAFE / SUSPICIOUS / HIGH_RISK / CRITICAL
+- **CLI:** `scan`, `scan-file`, `stats` commands with `--sanitize`, `--json`, `--min-severity` flags
+- **Tests:** 70+ tests, 0 false positives on clean inputs
 
-### 2. LLM Red Team Toolkit
-Automated red teaming tool that probes LLMs for vulnerabilities — prompt injection, data leakage, jailbreak patterns, output manipulation. Scoring system, PDF/Markdown report generation, evidence collection.
-
-*Planned: after Project 1.*
-
-### 3. Secure RAG Pipeline
-Retrieval-Augmented Generation system with security hardening at every layer. Document-level access control, query sanitization, data poisoning detection, PII filtering, audit logging.
-
-*Planned: during Master's.*
-
-### 4. Adversarial ML Attack Detection
-FGSM and PGD attacks on a trained image classifier. Defense comparisons (adversarial training, input preprocessing). Full writeup with math explanations.
-
-*Planned: during Master's.*
-
-### 5. AI Security Audit Framework
-Reusable audit checklist and automated scanning toolkit mapped to OWASP LLM Top 10 and MITRE ATLAS. Risk scoring matrix, professional report template, remediation database.
-
-*Planned: after Project 2.*
+**Folder:** [`ai-security/prompt-injection-defense/`](./ai-security/prompt-injection-defense)
 
 ---
 
 ## Security Testing *(In Progress)*
 
-**HackTheBox writeups** — working through machines, starting with Easy (web app and auth-focused), progressing to Medium.
-
-**OWASP Juice Shop lab** — 3-star+ challenges documented as a professional vulnerability assessment report, mapped to OWASP Top 10 and CWE IDs.
+**HackTheBox** — working through machines, web app and auth-focused. Writeups in progress.
 
 **PortSwigger Web Security Academy** — SQL injection, XSS, authentication, access control, SSRF labs.
 
----
-
-## QA Foundations *(Completed — Reframed for Security)*
-
-These sections demonstrate the systematic, adversarial thinking that feeds directly into security engineering work.
-
-### Manual Security Testing — SEEK NZ
-
-Security-focused exploratory testing of SEEK New Zealand as a guest user. Evaluated authentication gating, access control boundaries, authorization bypass attempts, and session management behavior.
-
-14 executed test cases, 6 bug reports (severity/impact/evidence), Risk Matrix, RTM, Accessibility Checks, Test Summary Report.
-
-**Folder:** [`manual/`](./manual)
+**Crucible by Dreadnode** — AI security CTF challenges: prompt injection, model extraction, adversarial inputs.
 
 ---
 
-### API Security Testing — DummyJSON (Postman + Newman)
+## Certifications *(In Progress)*
 
-API security test suite covering authentication bypass vectors, JWT token security, unauthorized access attempts, and data validation against the DummyJSON REST API.
+Working through a deliberate stack across three pillars:
 
-**18 requests, 47 assertions** across 5 categories:
-
-| Category | Requests | What's Tested |
-|----------|----------|---------------|
-| Pre-Auth Checks | 2 | Unauthenticated access: no token (401), fake token (401) |
-| Auth | 3 | Valid login (token stored), invalid creds, empty body |
-| Users | 4 | List, get by ID, invalid ID (404), pagination |
-| Products (CRUD) | 8 | GET, POST, PUT, DELETE, search, sort, schema validation |
-| Authenticated Access | 1 | Chained auth: login token reused on /auth/me |
-
-Chained auth flows, full CRUD coverage, schema validation, negative testing, Newman CI pipeline.
-
-**Folder:** [`api/`](./api)
-
----
-
-### Security Regression Automation — Cypress (JavaScript)
-
-Automated security regression framework validating authentication controls, session management, and data integrity across Sauce Demo's critical security boundaries.
-
-**24 test cases** across 5 spec files — valid login, locked user detection, invalid credential handling, session state persistence, cart data integrity, checkout flow validation.
-
-Page Object Model, custom commands, data-driven fixtures, screenshot on failure, GitHub Actions CI/CD.
-
-**Folder:** [`automation/cypress-framework/`](./automation/cypress-framework)
-
----
-
-### Cross-Browser Security Validation — Playwright (TypeScript)
-
-Multi-browser security validation framework. Same application, different stack. Proves the security test coverage isn't tool-dependent.
-
-**29 test cases** — Chromium, Firefox, WebKit. Auth flow verification, session management, direct-access protection, checkout data integrity. Trace viewer for failure analysis.
-
-**Folder:** [`automation/playwright-framework/`](./automation/playwright-framework)
-
----
-
-## How to Run Tests
-
-### Cypress
-```bash
-cd automation/cypress-framework
-npm install
-npm test                    # headless
-npm run cy:open             # interactive
-```
-
-### Playwright
-```bash
-cd automation/playwright-framework
-npm install
-npx playwright install
-npm test                    # all browsers
-npm run test:chromium       # chromium only
-npm run report              # HTML report
-```
-
----
-
-## Certifications
-
-Working through a deliberate certification stack across CompTIA, ISTQB, HackTheBox, and Anthropic. Full tracker in `certifications/README.md` *(coming soon)*.
-
-Target certs: CompTIA Network+ → Security+ → SecAI+, ISTQB CTFL → CT-AI, HTB CJCA → CWES → AI Red Teamer, Claude Certified Architect, CAISP.
+| Pillar | Certs |
+|--------|-------|
+| AI | Anthropic Academy → Claude Certified Architect |
+| Security | CompTIA Network+ → Security+ → HTB CJCA → CWES |
+| AI Security | CompTIA SecAI+ → HTB AI Red Teamer → CAISP |
 
 ---
 
 ## Tools & Technologies
 
-Security: Python, OWASP LLM Top 10, MITRE ATLAS, prompt injection patterns, adversarial ML, HackTheBox, PortSwigger Web Security Academy
+**AI Security:** Python, OWASP LLM Top 10, MITRE ATLAS, prompt injection patterns, adversarial ML
 
-Testing & Automation: Cypress 15.x (JavaScript), Playwright (TypeScript), Postman, Newman, Page Object Model, data-driven fixtures
+**Security:** HackTheBox, PortSwigger Web Security Academy, Burp Suite, Wireshark, Splunk/ELK
 
-AI/ML: Claude API, Anthropic MCP, LangChain *(learning)*, PyTorch *(learning)*
+**AI/ML:** Claude API, Anthropic MCP, LangChain *(learning)*, PyTorch *(learning)*
 
-CI/CD: GitHub Actions, headless test runs, Newman HTML reports
+**Languages:** Python, JavaScript, TypeScript
+
+**CI/CD:** GitHub Actions
 
 ---
 
 ## About
 
-Bhanu Gupta — final-year Bachelor of IT, Otago Polytechnic Auckland. Pursuing a Master's in Cybersecurity after graduation (Dec 2026). Building toward Security Engineering roles with AI security specialization. Target market: New Zealand (priority), Australia.
+Bhanu Gupta — final-year Bachelor of IT, Otago Polytechnic Auckland. Pursuing a Master's in Cybersecurity. Building toward Security Engineering roles in NZ with AI security specialization.
 
-Security engineering is where I'm entering. AI security is where I'm heading. The two don't conflict — they compound.
+Most security people don't understand AI. Most AI people don't understand security. That gap is what I'm positioning in.
 
 - **GitHub:** [github.com/bhanuGupta1](https://github.com/bhanuGupta1)
-- **Email:** bhanugupta2001@gmail.com
+- **Email:** bhanuguptagarg@gmail.com
