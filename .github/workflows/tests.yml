@@ -43,5 +43,5 @@ jobs:
           assert result.risk_score >= 50
           clean = d.scan('What is the capital of France?')
           assert not clean.is_injection, 'False positive on clean input'
-          print(f'Smoke test passed: {len(d.catalog.all_patterns())} patterns loaded')
+          print(f'Smoke test passed: {len(d.catalog.all_patterns)} patterns loaded')
           "
