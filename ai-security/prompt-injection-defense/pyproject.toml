@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "prompt-injection-defense"
+version = "1.0.0"
+description = "Detection and sanitization framework for LLM prompt injection attacks (OWASP LLM01)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Bhanu Gupta", email = "bhanuguptagarg@gmail.com" }
+]
+keywords = ["llm", "security", "prompt-injection", "ai-security", "owasp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []  # Zero external dependencies for core detection
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov"]
+api = ["fastapi>=0.100", "uvicorn[standard]>=0.20"]
+llm = ["anthropic>=0.40"]
+
+[project.scripts]
+pid-scan = "src.cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/bhanuguptagarg/prompt-injection-defense"
+"Bug Tracker" = "https://github.com/bhanuguptagarg/prompt-injection-defense/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
