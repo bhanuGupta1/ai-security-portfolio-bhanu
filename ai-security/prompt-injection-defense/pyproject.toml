@@ -38,6 +38,10 @@ pid-scan = "src.cli:main"
 "Homepage" = "https://github.com/bhanuguptagarg/prompt-injection-defense"
 "Bug Tracker" = "https://github.com/bhanuguptagarg/prompt-injection-defense/issues"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
