@@ -121,6 +121,14 @@ DIRECT_OVERRIDE = [
         category="direct_override",
         description="Asks the model to simulate a state where its safety guidelines are inactive.",
     ),
+    Pattern(
+        id="D-011",
+        name="Ignore All Restrictions",
+        pattern=r"ignore\s+(all\s+)?(safety\s+)?(restrictions?|limitations?|filters?|safeguards?|boundaries|controls?)",
+        severity=Severity.CRITICAL,
+        category="direct_override",
+        description="Direct command to ignore restrictions without a preceding qualifier — covers variants not caught by D-001.",
+    ),
 ]
 
 # =============================================================================
@@ -423,7 +431,7 @@ CONTEXT_MANIPULATION = [
     Pattern(
         id="C-008",
         name="Translation / Reword to Bypass",
-        pattern=r"(translate|reword|rephrase|rewrite|express)\s+(this|the\s+following|it)\s+(without|removing|excluding|bypassing)\s+(any\s+)?(safety|restrictions?|filters?|warnings?|caveats?|refusals?)",
+        pattern=r"(translate|reword|rephrase|rewrite|express)\s+(this|the\s+following|it)\s+(but\s+)?(without|removing|excluding|bypassing)\s+(any\s+)?(safety|restrictions?|filters?|warnings?|caveats?|refusals?)",
         severity=Severity.HIGH,
         category="context_manipulation",
         description="Asks the model to reformulate restricted content while removing its safety framing.",
