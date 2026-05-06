@@ -22,15 +22,18 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
+        working-directory: ai-security/prompt-injection-defense
         run: |
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
 
       - name: Run tests with coverage
+        working-directory: ai-security/prompt-injection-defense
         run: |
           python -m pytest tests/ -v --tb=short --cov=src --cov-report=term-missing
 
       - name: Verify zero-dependency core runs
+        working-directory: ai-security/prompt-injection-defense
         run: |
           python -c "
           from src.detector import PromptInjectionDetector
