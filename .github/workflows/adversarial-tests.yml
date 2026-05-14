@@ -1,0 +1,70 @@
+name: Adversarial Transport Attack — Tests
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths:
+      - 'ai-security/adversarial-transport-attack/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'ai-security/adversarial-transport-attack/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        working-directory: ai-security/adversarial-transport-attack
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install pytest pytest-cov
+
+      - name: Run tests with coverage
+        working-directory: ai-security/adversarial-transport-attack
+        run: |
+          python -m pytest tests/ -v --tb=short --cov=src --cov-report=term-missing
+
+      - name: Smoke test — FGSM + PGD attack pipeline
+        working-directory: ai-security/adversarial-transport-attack
+        run: |
+          python -c "
+          import torch
+          from src.model import TransportCNN, class_name
+          from src.attacks import FGSM, PGD
+
+          torch.manual_seed(42)
+          model = TransportCNN(n_classes=43)
+          model.eval()
+
+          x = torch.rand(1, 3, 32, 32)
+          with torch.no_grad():
+              y = model(x).argmax(dim=1)
+
+          # FGSM smoke test
+          fgsm = FGSM(model, epsilon=0.1)
+          r = fgsm.attack(x, y)
+          assert isinstance(r.attack_success, bool)
+          assert (r.adversarial - r.original).abs().max().item() <= 0.1 + 1e-6
+          print(f'FGSM OK — success={r.attack_success}, norm={r.perturbation_norm:.4f}')
+
+          # PGD smoke test
+          pgd = PGD(model, epsilon=0.1, n_steps=10)
+          r2 = pgd.attack(x, y)
+          assert (r2.adversarial - r2.original).abs().max().item() <= 0.1 + 1e-6
+          print(f'PGD OK  — success={r2.attack_success}, norm={r2.perturbation_norm:.4f}')
+
+          print('Smoke test passed: FGSM + PGD attacks verified')
+          "
