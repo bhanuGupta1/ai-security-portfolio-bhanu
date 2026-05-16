@@ -77,10 +77,4 @@ APRA CPS 230 compliance. LLM risk in banking and fraud detection AI. OWASP LLM T
 | CI/CD | GitHub Actions (matrix: Python 3.10 / 3.11 / 3.12) |
 | Certifications (in progress) | CompTIA Network+, Security+, Microsoft SC-200 |
 
----
 
-## Connect
-
-- **GitHub:** [github.com/bhanuguptagarg](https://github.com/bhanuguptagarg)
-- **LinkedIn:** [linkedin.com/in/bhanu-gupta-garg](https://linkedin.com/in/bhanu-gupta-garg)
-- **Email:** bhanuguptagarg@gmail.com
