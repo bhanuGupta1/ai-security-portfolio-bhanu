@@ -8,7 +8,7 @@
 ![Patterns](https://img.shields.io/badge/attack%20patterns-55-red)
 ![OWASP](https://img.shields.io/badge/OWASP-LLM01-orange)
 
-**Live demo:** https://ai-security-portfolio-bhanu-production.up.railway.app/
+**Live demo:** https://ai-security-portfolio-bhanu.onrender.com/
 
 ---
 
