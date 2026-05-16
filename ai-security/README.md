@@ -7,7 +7,7 @@
 ## Projects
 
 ### [prompt-injection-defense](./prompt-injection-defense/)
-**Live:** https://ai-security-portfolio-bhanu-production.up.railway.app/
+**Live:** https://ai-security-portfolio-bhanu.onrender.com/
 
 Detection and sanitization middleware for LLM prompt injection attacks. OWASP LLM01.
 
@@ -18,7 +18,7 @@ Detection and sanitization middleware for LLM prompt injection attacks. OWASP LL
 ---
 
 ### [adversarial-transport-attack](./adversarial-transport-attack/)
-**Live:** *(deploying)*
+**Live:** https://huggingface.co/spaces/BhanuGupta/adversarial-transport-attack
 
 FGSM and PGD adversarial attacks on a 43-class traffic sign classifier. MITRE ATLAS AML.T0043.
 

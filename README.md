@@ -12,7 +12,7 @@
 ## Live Projects
 
 ### PR-01 — Prompt Injection Defense Framework
-**🔴 Live:** https://ai-security-portfolio-bhanu-production.up.railway.app/
+**🔴 Live:** https://ai-security-portfolio-bhanu.onrender.com/
 
 Detection, sanitization, and middleware for LLM prompt injection attacks. Addresses OWASP LLM01 — the #1 vulnerability in production AI systems.
 
@@ -27,7 +27,7 @@ Detection, sanitization, and middleware for LLM prompt injection attacks. Addres
 ---
 
 ### PR-02 — Adversarial Attacks on AI in Transport Infrastructure
-**🔴 Live:** *(deploying)*
+**🔴 Live:** https://huggingface.co/spaces/BhanuGupta/adversarial-transport-attack
 
 Demonstrates FGSM and PGD adversarial attacks on a 43-class traffic sign classifier. Imperceptible pixel perturbations (ε ≤ 0.03) cause reliable misclassification — STOP signs read as SPEED LIMIT signs. Maps to MITRE ATLAS AML.T0043.
 
@@ -46,7 +46,7 @@ Demonstrates FGSM and PGD adversarial attacks on a 43-class traffic sign classif
 | ID | Project | Stack | Status |
 |----|---------|-------|--------|
 | PR-01 | Prompt Injection Defense Framework | Python, FastAPI, Regex | ✅ Live |
-| PR-02 | Adversarial Attacks on Transport AI | PyTorch, FGSM/PGD, MITRE ATLAS | 🔄 Deploying |
+| PR-02 | Adversarial Attacks on Transport AI | PyTorch, FGSM/PGD, MITRE ATLAS | ✅ Live |
 | PR-03 | OT/SCADA Simulation Lab | Python, pymodbus, Modbus TCP | 🔜 Next |
 | PR-04 | Nuclei Template — FHIR Health API | YAML, Nuclei | 🔜 Planned |
 | PR-05 | CPS 230 Financial Services AI Threat Model | STRIDE, MITRE ATLAS, APRA | 🔜 Planned |
