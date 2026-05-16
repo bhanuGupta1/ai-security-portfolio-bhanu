@@ -1,7 +1,11 @@
-# Core — PyTorch required for gradient-based attacks
+# Core — PyTorch (CPU-only for deployment, GPU auto-detected locally)
 torch>=2.0.0
 
-# Optional: pretrained models and GTSRB dataset download
+# API / Dashboard
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
+
+# Optional: pretrained models and GTSRB dataset
 # torchvision>=0.15.0
 
 # Development and testing
