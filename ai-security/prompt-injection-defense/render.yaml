@@ -2,9 +2,11 @@ services:
   - type: web
     name: prompt-injection-defense
     runtime: python
-    buildCommand: pip install fastapi uvicorn
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+      - key: PYTHONUNBUFFERED
+        value: "1"
